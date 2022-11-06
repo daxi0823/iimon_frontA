@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>front A</title>
+  </head>
+  <body>
+    <p id="showArea">Cats have about 130,000 hairs per square inch (20,155 hairs per square centimeter).</p>
+    <input id="replacePhrase" type="button" value="更新" />
+
+    <!-- axios cdnで導入-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- clickイベントでAPIを叩く -->
+    <script>
+      document.getElementById("replacePhrase").onclick = function() {
+        axios.get("https://catfact.ninja/fact")
+          .then(function(response) {
+            document.getElementById('showArea').innerHTML = response.data.fact;
+          })
+          .catch(function(error) {
+            console.log("error");
+          });
+      };
+    </script>
+  </body>
+</html>
